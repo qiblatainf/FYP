@@ -18,13 +18,16 @@ def write_to_onedrive(df, file_name):
     
     # Navigate One Drive
     root_folder = client.item(drive='me', id='root').children.get()
+    print("Root Folder: ", root_folder)
     fyp_folder_id =""
     for item in root_folder:
-        if item.folder:
+        print("FINDING ITEMS IN ROOT FOLDER")
             # print(item.id + " " + item.name)
-            if (item.name == "FYP"):
-                fyp_folder_id = item.id
-                print("Folder Name = ", item.name)
+        if (item.name == "FYP"):
+            print("GOT FYP")
+            fyp_folder_id = item.id
+            print("Folder Name = ", item.name)
+            break
 
 
     print("Converting Dataframe to Excel File")
