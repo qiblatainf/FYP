@@ -2,11 +2,11 @@ def clean_data():
     #LIBRARIES
     import pandas as pd
     from access_onedrive import create_onedrive_directdownload
-    # from writeto_onedrive import write_to_onedrive
+    from writeto_onedrive import write_to_onedrive
     from MedicalNER import medner
 
     # data = pd.read_excel('C:\\Users\\Hp\\OneDrive\\FYP\\Adult 2021 Anonymized.xlsx') ##must change the reading location to merged file
-    onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6UkKXCAorwdeI3bi?e=PfM5DJ' #pass actual dirty merged file
+    onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=sgGYaq' #pass actual dirty merged file
     link = create_onedrive_directdownload(onedrive_link)
     data = pd.read_excel(link)    
     
@@ -15,6 +15,7 @@ def clean_data():
 
     """DATA CLEANING"""
 
+    print("STARTED CLEANING")
     #dropping columns
     df.pop(df.columns[0])
 
@@ -99,8 +100,8 @@ def clean_data():
 
     print("Cleaning was successful")
     # df.to_excel('indus clean 2.xlsx')
-    
-    medner(new_df)
-    # write_to_onedrive(new_df) #add write to one drive in med ner
+    print("WRITING FILE")
+    # medner(new_df)
+    write_to_onedrive(new_df, "merged_clean_data.xlsx") #add write to one drive in med ner
     
 clean_data()
