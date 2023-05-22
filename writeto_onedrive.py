@@ -1,12 +1,17 @@
 def write_to_onedrive(df, file_name):
     import onedrivesdk
     from onedrivesdk.helpers import GetAuthCodeServer
+    import os
+    from dotenv import load_dotenv
+
+    # Load variables from .env file
+    load_dotenv()
 
     print("File name = ", file_name)
 
     redirect_uri = 'http://localhost:8080/'
-    client_secret = 'PGD8Q~bE4WBt.RkZQpsLyVQj9G1XwZ5V29bB.cx3' #value
-    client_id='78907c8b-fe98-4f57-bcc6-1a9859d60515'
+    client_secret = os.environ.get('CLIENT_SECRET') #value
+    client_id= os.environ.get('CLIENT_ID')
     scopes=['wl.signin', 'wl.offline_access', 'onedrive.readwrite']
 
     client = onedrivesdk.get_consumer_client(client_id= client_id, scopes=scopes)
