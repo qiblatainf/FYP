@@ -42,7 +42,7 @@ def medner(data):
 
     df = df_diagnosis.append(df_null)
     df = df.sort_index()
-    df = df['Diagnosis'].map(lambda x: str(x)[:-2])
+    df = df['Diagnosis'].map(lambda x: str(x)[:-1]) #changed to -1 from -2
     # len(df)
     
     # write_to_onedrive(df, 'cleaned_dataset.xlsx')

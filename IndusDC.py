@@ -3,9 +3,15 @@ def clean_data():
     import pandas as pd
     from access_onedrive import create_onedrive_directdownload
     from MedicalNER import medner
+    
+    import os
+    from dotenv import load_dotenv
 
-    new_data_onedrive_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hHi2av2ez6BdQ9S?e=UexbnL' #New Data.xlsx
-    link = create_onedrive_directdownload(new_data_onedrive_link)
+    # Load variables from .env file
+    load_dotenv()
+    onedrive_url = os.environ.get('NEW_DATA_URL') #New Data.xlsx
+
+    link = create_onedrive_directdownload(onedrive_url)
     data = pd.read_excel(link)    
     
     #Convert Excel to DataFrame

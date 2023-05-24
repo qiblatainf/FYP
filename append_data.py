@@ -23,10 +23,16 @@ def append_new_data(df):
     import importlib
     importlib.reload(writeto_onedrive)
     from writeto_onedrive import write_to_onedrive
+    import os
+    from dotenv import load_dotenv
     
     new_data = df
 
-    old_data_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=5gBagY' #merged data.xlsx
+    # Load variables from .env file
+    load_dotenv()
+    old_data_link = os.environ.get('OLD_DATA_URL') #merged data.xlsx
+
+    # old_data_link = 'https://1drv.ms/x/s!AsCp_kE1E5Md6hQevRHs-ptqyPlE?e=5gBagY' 
     old_data_od_link = create_onedrive_directdownload(old_data_link)
     old_data = pd.read_excel(old_data_od_link)
 
